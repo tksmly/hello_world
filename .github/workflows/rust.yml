@@ -31,3 +31,4 @@ jobs:
           files: Release.txt
           tag_name: ${{ github.ref }}
           append_body: true
+          target_commitish: ${{ github.sha }}
