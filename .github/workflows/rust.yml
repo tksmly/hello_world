@@ -28,3 +28,4 @@ jobs:
       with:
           files: Release.txt
           tag_name: ${{ github.ref }}
+          append_body: true
