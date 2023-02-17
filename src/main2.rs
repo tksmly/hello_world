@@ -2,7 +2,7 @@ use rand::Rng;
 use std::io;
 use std::io::Write;
 use std::time::Instant;
-fn _maina() {
+pub(crate) fn maina() {
     const LEN: usize = 1145;
     let mut a = [0; LEN];
     for i in 0..LEN {
