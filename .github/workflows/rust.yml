@@ -12,7 +12,6 @@ env:
 jobs:
   
   build:
-    fail-fast: false
     name: ${{ matrix.target }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
