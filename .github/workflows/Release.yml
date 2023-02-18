@@ -1,0 +1,17 @@
+name: Release
+
+on:
+  release:
+    types:
+      - published
+
+
+jobs:
+
+          
+        
+#     - name: Release
+#       uses: softprops/action-gh-release@v1
+#       with:
+#           files: target/${{ matrix.target }}/release/hello_world.${{ matrix.extension }}
+#           append_body: true
