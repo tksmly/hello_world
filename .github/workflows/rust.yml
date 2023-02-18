@@ -8,7 +8,6 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-  PROJECT_NAME: hello_world
 
 jobs:
   
@@ -47,10 +46,10 @@ jobs:
       with:
         name: upload
         path: |
-          target/x86_64-pc-windows-gnu/release/${PROJECT_NAME}.exe
-          target/i686-pc-windows-gnu/release/${PROJECT_NAME}.exe
-          target/x86_64-unknown-linux-gnu/release/${PROJECT_NAME}
-          target/i686-unknown-linux-gnu/release/${PROJECT_NAME}
+          target/x86_64-pc-windows-gnu/release/hello_world.exe
+          target/i686-pc-windows-gnu/release/hello_world.exe
+          target/x86_64-unknown-linux-gnu/release/hello_world
+          target/i686-unknown-linux-gnu/release/hello_world
           
         
 #     - name: Release
