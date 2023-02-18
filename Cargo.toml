@@ -18,3 +18,4 @@ opt-level = "z"
 [profile.release_mac]
 inherits = "release"
 link-arg=-nostartfiles
+target=x86_64-apple-darwin
