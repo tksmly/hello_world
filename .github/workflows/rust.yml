@@ -1,9 +1,7 @@
 name: Rust
 
 on:
-  release:
-    types:
-      - published
+  push:
   workflow_dispatch:
 
 env:
@@ -52,7 +50,7 @@ jobs:
 
     - name: Release
       uses: softprops/action-gh-release@v1
-#       if: startsWith(github.ref, 'refs/tags/')
+      if: startsWith(github.ref, 'refs/tags/')
       with:
           files: |
             x86_64-windows_hello_world.exe
@@ -61,7 +59,7 @@ jobs:
             i686-linux_hello_world
           prerelease: true
           append_body: true
-#           tag_name: test
+
   Buildmac:
     runs-on: macos-latest
     steps:
@@ -93,11 +91,11 @@ jobs:
 
     - name: Release
       uses: softprops/action-gh-release@v1
-
+      if: startsWith(github.ref, 'refs/tags/')
       with:
           files: |
             aarch64-apple_hello_world
             x86_64-apple_hello_world
           prerelease: true
           append_body: true
-#           tag_name: test
+          
