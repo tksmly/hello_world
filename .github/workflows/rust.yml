@@ -1,9 +1,9 @@
 name: Rust
 
 on:
-#   release:
-#     types:
-#       - published
+  release:
+    types:
+      - published
   workflow_dispatch:
 
 env:
@@ -61,7 +61,7 @@ jobs:
             i686-linux_hello_world
           prerelease: true
           append_body: true
-          tag_name: test
+#           tag_name: test
   Buildmac:
     runs-on: macos-latest
     steps:
@@ -100,4 +100,4 @@ jobs:
             x86_64-apple_hello_world
           prerelease: true
           append_body: true
-          tag_name: test
+#           tag_name: test
