@@ -1,9 +1,9 @@
 name: Rust
 
 on:
-  release:
-    types:
-      - published
+#   release:
+#     types:
+#       - published
   workflow_dispatch:
 
 env:
@@ -29,8 +29,8 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y  mingw-w64 gcc-multilib
-    - name: Install rust target
-      run: rustup target add x86_64-pc-windows-gnu i686-pc-windows-gnu x86_64-unknown-linux-gnu i686-unknown-linux-gnu
+#     - name: Install rust target
+#       run: rustup target add x86_64-pc-windows-gnu i686-pc-windows-gnu x86_64-unknown-linux-gnu i686-unknown-linux-gnu
 
         
     - name: Build_x86_64-pc-windows-gnu
@@ -60,4 +60,53 @@ jobs:
             i686-windows_hello_world_.exe
             x86_64-linux_hello_world
             i686-linux_hello_world
+          prerelease: true
+          append_body: true
+  Buildmac:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    
+    - name: 'Setup Rust'
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        targets: aarch64-apple-darwin, x86_64-apple-darwin
+    - uses: Swatinem/rust-cache@v2
+      with:
+        key: mac
+        
+
+#     - name: Install rust target
+#       run: rustup target add x86_64-pc-windows-gnu i686-pc-windows-gnu x86_64-unknown-linux-gnu i686-unknown-linux-gnu
+
+        
+    - name: Build_x86_64-pc-windows-gnu
+      run: cargo build --release --target x86_64-pc-windows-gnu
+    - name: Build_i686-pc-windows-gnu
+      run: cargo build --release --target i686-pc-windows-gnu
+    - name: Build_x86_64-unknown-linux-gnu
+      run: cargo build --release --target x86_64-unknown-linux-gnu
+    - name: Build_i686-unknown-linux-gnu
+      run: cargo build --release --target i686-unknown-linux-gnu
+
+    - name: rename
+      run: |
+        mv target/x86_64-pc-windows-gnu/release/hello_world.exe x86_64-windows_hello_world_.exe
+        mv target/i686-pc-windows-gnu/release/hello_world.exe i686-windows_hello_world_.exe
+        mv target/x86_64-unknown-linux-gnu/release/hello_world x86_64-linux_hello_world
+        mv target/i686-unknown-linux-gnu/release/hello_world i686-linux_hello_world
+          
+
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+#       if: startsWith(github.ref, 'refs/tags/')
+      with:
+          files: |
+            x86_64-windows_hello_world_.exe
+            i686-windows_hello_world_.exe
+            x86_64-linux_hello_world
+            i686-linux_hello_world
+          prerelease: true
           append_body: true
