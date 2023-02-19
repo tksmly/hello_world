@@ -50,7 +50,7 @@ jobs:
 
     - name: Release
       uses: softprops/action-gh-release@v1
-      # if: startsWith(github.ref, 'refs/tags/')
+      if: startsWith(github.ref, 'refs/tags/')
       with:
           files: |
             x86_64-windows_hello_world.exe
@@ -91,7 +91,7 @@ jobs:
 
     - name: Release
       uses: softprops/action-gh-release@v1
-      # if: startsWith(github.ref, 'refs/tags/')
+      if: startsWith(github.ref, 'refs/tags/')
       with:
           files: |
             aarch64-apple_hello_world
